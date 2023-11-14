@@ -88,7 +88,7 @@ INSERT INTO usuario(nome,email,senha,tipo) VALUES('Fulano da Silva','fulano@gmai
   ---Fazemos uma comparação  entre a chave estrangeira (fk)
   ---com a chave primario(pk)
   ON noticias.usuario_id= usuario.id
-  ---opcional(ordenação/classificação psla data)
+  ---opcional(ordenação/classificação pela data)
   ---DESC indica ordem descrecente(mais recente vem primeiro)
   ORDER BY data DESC;        
   ```
