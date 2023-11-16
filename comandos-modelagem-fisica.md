@@ -4,7 +4,7 @@ create database microblog_carlos CHARACTER SET utf8mb4;
 
 ## Criar tabela de usúario
 
-create table(id int not null primary key auto_increment,
+create table usuario(id int not null primary key auto_increment,
 nome varchar(45)not null,
 email varchar(45)not null unique,
 senha varchar(255)not null,
