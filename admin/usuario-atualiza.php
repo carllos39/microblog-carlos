@@ -2,8 +2,22 @@
 require_once "../inc/funcoes-usuario.php";
 require_once "../inc/cabecalho-admin.php";
 $id=$_GET['id'];
-$usuario=lerUmUsuario($conexao,$id)
+$usuario=lerUmUsuario($conexao,$id);
 
+if(isset($_POST['atualizar'])){
+$nome=$_POST['nome'];
+$email=$_POST['email'];
+$tipo=$_POST['tipo'];
+//lógica para senha se o campo senha estiver vazio ou se asenha for a mesma já existente
+//no banco  de dados , então significa que o usuário não alterou a senha.Portanto devemos manter a senha existente.  
+if(empty($_POST['senha']) || password_verify($_POST['senha'],$usuario['senha'])){
+$senha=$usuario['senha'];
+}else{
+$senha=password_hash($_POST['senha'],PASSWORD_DEFAULT);
+} 
+atualizarUsuario($conexao,$id,$nome,$email,$senha,$tipo);
+header("location:usuarios.php");
+}
 
 ?>
 
