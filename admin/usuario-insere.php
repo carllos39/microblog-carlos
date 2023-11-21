@@ -9,7 +9,8 @@ if (isset($_POST['inserir'])) {
 	$tipo = $_POST['tipo'];
 
 	inserirUsuario($conexao, $nome, $email, $senha, $tipo);
-	//Redirecionando paara página que lista os usuásrios
+
+	//Redirecionando para página que lista os usuários
 	header("location:usuarios.php");
 }
 ?>

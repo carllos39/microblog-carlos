@@ -1,7 +1,11 @@
 <?php 
+require_once "../inc/funcoes-usuario.php";
 require_once "../inc/cabecalho-admin.php";
-?>
+//Chamamos a função lerUsuario que ao terminar  de fazer os processos , ela retorna  os dados  do resltado da consultas.
+$dados=lerUsuarios($conexao);
 
+?>
+<pre><?= var_dump($dados)?></pre>
 
 <div class="row">
 	<article class="col-12 bg-white rounded shadow my-1 py-4">
