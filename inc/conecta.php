@@ -11,6 +11,6 @@ if(!$conexao){
     die("Deu ruim:".mysqli_connect());
 
 }else{
-echo"Beleza,conectado!";
+
 }
 ?>
