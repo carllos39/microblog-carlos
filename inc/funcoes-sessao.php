@@ -19,4 +19,17 @@ function verificaAcesso(){
         exit;//ou die()
     }
 }
+
+function login($id,$nome,$tipo){
+//Criar variáveis de sessão são recursos que ficam disponível para uso durante  toda  duração  da sessão,ou seja ,enquanto o navegador não for fechado  ou  o usuário não clicar em sair.
+$_SESSION['id']=$id;
+$_SESSION['nome']=$nome;
+$_SESSION['tipo']=$tipo;
+}
+
+function logout(){
+    session_destroy();
+    header("location:../login.php?saiu");
+    exit;
+}
 ?>
