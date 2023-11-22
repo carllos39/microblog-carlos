@@ -31,4 +31,10 @@ function excluirUsuario($conexao,$id){
   $sql="DELETE FROM usuario WHERE id=$id";
   mysqli_query($conexao,$sql) or die(mysqli_error($conexao));
 }
+
+function buscaUsuario($conexao,$email){
+ $sql="SELECT * FROM usuario WHERE email='$email'";
+ $resultado= mysqli_query($conexao,$sql) or die(mysqli_error($conexao));
+return mysqli_fetch_assoc($resultado);
+}
 ?>
