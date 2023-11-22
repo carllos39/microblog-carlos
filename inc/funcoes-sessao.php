@@ -11,7 +11,7 @@ session_start();
 
 function verificaAcesso(){
     //se não existir uma variável de sessão chamada  "id "baseada no id  de usuário logado ,então 
-    //significa que ele /ela não eszta logado(a) no sistema.
+    //significa que ele /ela não esta logado(a) no sistema.
     if(!isset($_SESSION['id'])){
         //Portanto destrua  ods dados  de sessão ,redirecione  spara a página  login .php e pare o script.
         session_destroy();
