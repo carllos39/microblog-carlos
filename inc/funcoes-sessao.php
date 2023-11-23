@@ -29,7 +29,7 @@ $_SESSION['tipo']=$tipo;
 
 function logout(){
     session_destroy();
-    header("location:../login.php?saiu");
+    header("location:../login.php?sair");
     exit;
 }
 ?>
