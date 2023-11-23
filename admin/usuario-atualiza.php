@@ -8,7 +8,7 @@ if(isset($_POST['atualizar'])){
 $nome=$_POST['nome'];
 $email=$_POST['email'];
 $tipo=$_POST['tipo'];
-//lógica para senha se o campo senha estiver vazio ou se asenha for a mesma já existente
+//lógica para senha se o campo senha estiver vazio ou se a senha for a mesma já existente
 //no banco  de dados , então significa que o usuário não alterou a senha.Portanto devemos manter a senha existente.  
 if(empty($_POST['senha']) || password_verify($_POST['senha'],$usuario['senha'])){
 $senha=$usuario['senha'];
