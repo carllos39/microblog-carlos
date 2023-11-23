@@ -7,11 +7,11 @@ require "inc/funcoes-sessao.php";
 if(isset($_GET['acesso_negado'])){
 	$mensagem="Você deve logar primeiro !";
 
-}elseif(isset($_GET['Dados_incorretos'])){
+}elseif(isset($_GET['dados_incorretos'])){
 $mensagem="Dados incorretos,verifique!";
 }elseif(isset($_GET['sair'])){
 	$mensagem="Você saiu do sistema!";
-	}elseif(isset($_GET['campos_obrigatório'])){
+	}elseif(isset($_GET['campo_obrigatorio'])){
 		$mensagem="Preencha email e senha!";
 		}
 
@@ -33,7 +33,7 @@ if(isset($_POST['entrar'])){
 		header("location:admin/index.php");
 		exit;
 	}else{
-		header("location:login.php?Dados_incorretos");
+		header("location:login.php?dados_incorretos");
 		exit;
 	}
 
