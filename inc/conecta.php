@@ -3,7 +3,7 @@
 $servidor="localhost";
 $usuario="root";
 $senha="";
-$banco="microblog";
+$banco="microblog-carlos";
 /* usando a função mysqli_connect para conectar ao servidor de banco de dados */
 $conexao=mysqli_connect($servidor,$usuario,$senha,$banco);
 mysqli_set_charset($conexao ,"utf8");
