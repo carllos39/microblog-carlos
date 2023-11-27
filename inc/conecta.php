@@ -1,16 +1,14 @@
+
 <?php 
-/*Script de conexão ao servidor de banco de dados */
-$servidor="localhost";
+$servdor="localhost";
 $usuario="root";
 $senha="";
 $banco="microblog";
-/* usando a função mysqli_connect para conectar ao servidor de banco de dados */
-$conexao=mysqli_connect($servidor,$usuario,$senha,$banco);
-mysqli_set_charset($conexao ,"utf8");
-if(!$conexao){
+$conexao=mysqli_connect($servdor,$usuario,$senha,$banco);
+mysqli_set_charset($conexao,"utf8");
+if($conexao){
 die("Deu ruim:".mysqli_connect());
 }else{
-    echo"Beleza, conectado!";
+echo"Beleza,conectado!";
 }
-
 ?>

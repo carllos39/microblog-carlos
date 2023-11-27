@@ -4,7 +4,7 @@
 // Nestas áreas  o acesso  só é possível  mediante alguma  forma  de autenticação .Exemplo:login,senha, digital ,facial etc.
 //Verificar se não existe  uma sessão em funcionamento.
 
-if(!isset($_SESSION)){
+if(! isset($_SESSION)){
 // Então inicie uma sessão
 session_start();
 }
@@ -12,7 +12,7 @@ session_start();
 function verificaAcesso(){
     //se não existir uma variável de sessão chamada  "id "baseada no id  de usuário logado ,então 
     //significa que ele /ela não esta logado(a) no sistema.
-    if(!isset($_SESSION['id'])){
+    if(! isset($_SESSION['id'])){
         //Portanto destrua  ods dados  de sessão ,redirecione  spara a página  login .php e pare o script.
         session_destroy();
         header("location:../login.php?acesso_negado");
