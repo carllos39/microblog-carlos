@@ -1,5 +1,16 @@
 <?php
+require_once "../inc/funcoes-noticias.php";
 require_once "../inc/cabecalho-admin.php";
+//Capturar o id da noticias que foi trnsmitido via URL
+$idNoticias=$_GET['id'];
+$idUsuario=$_SESSION['id'];
+$tipoUsuario=$_SESSION['tipo'];
+
+$noticia=lerUmaNoticia($conexao,$idNoticias,$idUsuario,$tipoUsuario);
+
+echo"<pre>";
+var_dump($noticia);
+echo"</pre>";
 ?>
 
 
