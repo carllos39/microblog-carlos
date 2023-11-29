@@ -2,23 +2,30 @@
 require "conecta.php";
 
 /* Usada em noticia-insere.php */
-function inserirNoticia($conexao, $titulo, $texto, 
-    $resumo, $nomeImagem, $usuarioId){
+function inserirNoticia(
+    $conexao,
+    $titulo,
+    $texto,
+    $resumo,
+    $nomeImagem,
+    $usuarioId
+) {
 
     $sql = "INSERT INTO noticias(
                 titulo, texto, resumo, imagem, usuario_id
             ) VALUES(
                 '$titulo', '$texto', '$resumo', 
                 '$nomeImagem', $usuarioId
-            )";    
+            )";
 
     mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 } // fim inserirNoticia
 
 
 /* Usada em noticia-insere.php e noticia-atualiza.php */
-function upload($arquivo){
-    
+function upload($arquivo)
+{
+
     /* VALIDAÇÃO BACK-END */
 
     // Lista de formatos suportados pelo site
@@ -29,7 +36,7 @@ function upload($arquivo){
     ];
 
     // Verificando se o tipo do arquivo NÃO É um dos suportados
-    if( !in_array($arquivo['type'], $tiposValidos) ){
+    if (!in_array($arquivo['type'], $tiposValidos)) {
         echo "<script>
             alert('Formato inválido!'); history.back();
             </script>";
@@ -37,13 +44,13 @@ function upload($arquivo){
     }
 
     // Obtendo apenas o nome/extensão do arquivo
-    $nome = $arquivo['name']; 
+    $nome = $arquivo['name'];
 
     // Obtendo informações de acesso temporário
     $temporario = $arquivo['tmp_name'];
 
     // Definindo para onde a imagem vai e com qual nome
-    $destino = "../imagens/".$nome;
+    $destino = "../imagens/" . $nome;
 
     // Movendo o arquivo da área temporária para a pasta final
     move_uploaded_file($temporario, $destino);
@@ -52,70 +59,83 @@ function upload($arquivo){
 
 
 /* Usada em noticias.php */
-function lerNoticias($conexao,$idUsuario,$tipoUsuario){
+function lerNoticias($conexao, $idUsuario, $tipoUsuario)
+{
     //Verificando se o tipo de usuário é admin
-    if($tipoUsuario==='admin'){
-        $sql="SELECT noticias.id,
+    if ($tipoUsuario === 'admin') {
+        $sql = "SELECT noticias.id,
                      noticias.titulo,
                      noticias.data,
                      usuario.nome AS autor
                       FROM noticias JOIN usuario 
                       ON noticias.usuario_id=usuario.id 
                       ORDER BY data DESC";
-
-    }else{
+    } else {
         //SQL editor:pode carregar /ver  tudo dele somente
-        $sql="SELECT id,titulo ,data FROM noticias WHERE usuario_id = $idUsuario ORDER BY data DESC"; 
+        $sql = "SELECT id,titulo ,data FROM noticias WHERE usuario_id = $idUsuario ORDER BY data DESC";
     }
-    
 
-    $resultado= mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+
+    $resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
     //Ler vários arrays matriz
-    return mysqli_fetch_all($resultado,MYSQLI_ASSOC);
-
+    return mysqli_fetch_all($resultado, MYSQLI_ASSOC);
 } // fim lerNoticias
 
 
 /* Usada em noticias.php e páginas da área pública */
-function formataData(){    
-    
+function formataData()
+{
 } // fim formataData
 
 
 /* Usada em noticia-atualiza.php */
-function lerUmaNoticia($conexao,$idNoticias,$idUsuario,$tipoUsuario){
-    if($tipoUsuario=="admin"){
+function lerUmaNoticia($conexao, $idNoticias, $idUsuario, $tipoUsuario)
+{
+    if ($tipoUsuario == "admin") {
         // ADMIN-pode carreagar dados de qualquer noticias.
-    $sql="SELECT * FROM noticias WHERE id=$idNoticias";
-
-    }else{
+        $sql = "SELECT * FROM noticias WHERE id=$idNoticias";
+    } else {
         //EDITOR-Carrega só os dados dele mesmo.
-        $sql="SELECT * FROM noticias  WHERE id=$idNoticias AND usuario_id=$idUsuario";   
+        $sql = "SELECT * FROM noticias  WHERE id=$idNoticias AND usuario_id=$idUsuario";
     }
 
-    $resultado= mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+    $resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
     //Ler uma noticias
     return mysqli_fetch_assoc($resultado);
-
 } // fim lerUmaNoticia
 
 
 /* Usada em noticia-atualiza.php */
-function atualizarNoticia($conexao,$id){
+function atualizarNoticia($conexao, $titulo, $texto, $resumo, $imagem, $idNoticias, $idUsuario, $tipoUsuario){
+    if ($tipoUsuario == 'admin') {
+        //Sql do admin:pode atualizar qualquer noticias
+        $sql = "UPDATE noticias SET 
+titulo='$titulo',texto='$texto',
+resumo='$resumo',imagem='$imagem' WHERE id=$idNoticias";
+    } else {
+        //Sql do editor:pode atualizar somente as dele
+        $sql = "UPDATE noticias SET 
+titulo='$titulo',texto='$texto',
+resumo='$resumo',imagem='$imagem' WHERE id= $idNoticias AND usuario_id = $idUsuario";
+    }
 
-    
-    
 
-    // mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
+
+    mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 } // fim atualizarNoticia
 
 
 /* Usada em noticia-exclui.php */
-function excluirNoticia($conexao){
+function excluirNoticia($conexao,$idNoticias,$idUsuario,$tipoUsuario){
+if($tipoUsuario=='admin'){
+    $sql="DELETE FROM noticias WHERE id=$idNoticias";
+}else{
+    $sql="DELETE FROM noticias WHERE id=$idNoticias AND usuario_id = $idUsuario";
+}
 
 
-    // mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+     mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
 } // fim excluirNoticia
 
@@ -127,8 +147,9 @@ function excluirNoticia($conexao){
 /* Funções usadas nas páginas da área pública */
 
 /* Usada em index.php */
-function lerTodasAsNoticias($conexao){
-    
+function lerTodasAsNoticias($conexao)
+{
+
 
     // mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
@@ -136,8 +157,9 @@ function lerTodasAsNoticias($conexao){
 
 
 /* Usada em noticia.php */
-function lerDetalhes($conexao){
-    
+function lerDetalhes($conexao)
+{
+
 
     // mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
@@ -145,8 +167,9 @@ function lerDetalhes($conexao){
 
 
 /* Usada em resultados.php */
-function busca($conexao){
-    
+function busca($conexao)
+{
+
     // mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
 } // fim busca
