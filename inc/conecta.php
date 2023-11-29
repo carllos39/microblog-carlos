@@ -4,7 +4,7 @@ de Banco de Dados */
 $servidor = "localhost";
 $usuario = "root";
 $senha = "";
-$banco = "microblog";
+$banco = "microblog_carlos";
 
 /* Usando a função mysqli_connect para conectar
 ao servidor de banco de dados */
