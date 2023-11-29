@@ -147,11 +147,13 @@ if($tipoUsuario=='admin'){
 /* Funções usadas nas páginas da área pública */
 
 /* Usada em index.php */
-function lerTodasAsNoticias($conexao)
-{
+function lerTodasAsNoticias($conexao){
+    $sql="SELECT titulo,resumo,imagem, id FROM noticias ORDER BY data DESC";
 
 
-    // mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+
+ $resultado= mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+ return mysqli_fetch_all($resultado, MYSQLI_ASSOC);
 
 } // fim lerTodasAsNoticias
 
