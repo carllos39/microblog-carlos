@@ -1,10 +1,12 @@
-<?php 
+<?php
 require "funcoes-sessao.php";
-require_once "../inc/funcoes-usuario.php";
+require "../inc/funcoes-usuarios.php";
+
 verificaAcesso();
 
+// Verificando se o usuário pode entrar nesta página
+verificaTipo();
 
-$id=$_GET['id'];
-excluirUsuario($conexao,$id);
+$id = $_GET['id'];
+excluirUsuario($conexao, $id);
 header("location:usuarios.php");
-?>
