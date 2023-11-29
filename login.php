@@ -1,16 +1,19 @@
 <?php
-require "inc/cabecalho.php"; 
-require "inc/funcoes-usuario.php"; 
  require "inc/funcoes-sessao.php";
+require "inc/cabecalho.php"; 
+require "funcoes-usuario.php"; 
+
 
 //Programação das mensagens
  if(isset($_GET['acesso_negado'])){ 	
 	$mensagem="Você deve logar primeiro !";
 
  }elseif(isset($_GET['dados_incorretos'])){ 
-	$mensagem="Dados incorretos,verifique!"; }
-	elseif(isset($_GET['sair'])){
+	$mensagem="Dados incorretos,verifique!"; 
+
+	}elseif(isset($_GET['saiu'])){
 	$mensagem="Você saiu do sistema!";
+
 	}elseif(isset($_GET['campo_obrigatorio'])){
 	$mensagem="Preencha email e senha!";
 	}
