@@ -1,7 +1,7 @@
 <?php
 require_once "../inc/funcoes-noticias.php";
 require_once "../inc/cabecalho-admin.php";
-//Capturar o id da noticias que foi trnsmitido via URL
+//Capturar o id da noticias que foi transmitido via URL
 $idNoticias=$_GET['id'];
 $idUsuario=$_SESSION['id'];
 $tipoUsuario=$_SESSION['tipo'];
@@ -12,7 +12,7 @@ $noticia=lerUmaNoticia($conexao,$idNoticias,$idUsuario,$tipoUsuario);
     $texto=$_POST['texto'];
     $resumo=$_POST['resumo'];
     //Logica /Algoritmo para imagem
-    // Se o campo  imagem estiver vazio ,então significa  que o ususário não  quer mudar a imagem.
+    // Se o campo  imagem estiver vazio ,então significa  que o usuário não  quer mudar a imagem.
     //Ou seja , o sistema vai manter a imagem existente.
 
     if(empty($_FILES['imagem']['name'])){
