@@ -82,13 +82,10 @@ INSERT INTO usuario(nome,email,senha,tipo) VALUES('Fulano da Silva','fulano@gmai
   SELECT 
   noticias.data,
   noticias.titulo,
+  noticias.imagem,
+   noticias.texto,
   usuario.nome 
-  ----Especificamos quais tabelas  serão "juntadas /combinadas".
   FROM noticias join usuario
-  ---Fazemos uma comparação  entre a chave estrangeira (fk)
-  ---com a chave primario(pk)
   ON noticias.usuario_id= usuario.id
-  ---opcional(ordenação/classificação pela data)
-  ---DESC indica ordem descrecente(mais recente vem primeiro)
   ORDER BY data DESC;        
   ```

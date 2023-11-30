@@ -159,11 +159,23 @@ function lerTodasAsNoticias($conexao){
 
 
 /* Usada em noticia.php */
-function lerDetalhes($conexao)
-{
+function lerDetalhes($conexao,$id){
+    
+   $sql=" SELECT 
+    noticias.data,
+    noticias.titulo,
+    noticias.imagem,
+    noticias.texto,
+    usuario.nome AS autor
+    FROM noticias join usuario
+    ON noticias.usuario_id= usuario.id
+    WHERE noticias.id=$id
+    ORDER BY data DESC"; 
 
 
-    // mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+
+    $resultado= mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+    return mysqli_fetch_assoc($resultado);
 
 } // fim lerDetalhes
 
