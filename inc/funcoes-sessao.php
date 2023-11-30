@@ -15,64 +15,34 @@ if( !isset($_SESSION) ){
 }
 
 function verificaAcesso(){
-    /* Se NÃO EXISTIR uma variável de sessão chamada
-    "id" baseada no id de um usuário logado, então
-    significa que ele/ela NÃO ESTÁ LOGADO(A) no sistema. */
-    if(!isset($_SESSION['id'])){
-        /* Portanto, destrua os dados de sessão,
-        redirecione para a página login.php e pare
-        o script. */
+    //se não existir uma variável de sessão chamada  "id "baseada no id  de usuário logado ,então 
+    //significa que ele /ela não esta logado(a) no sistema.
+    if(! isset($_SESSION['id'])){
+        //Portanto destrua  os dados  de sessão ,redirecione  para a página  login .php e pare o script.
         session_destroy();
         header("location:../login.php?acesso_negado");
         exit; // ou die()
     }
 }
 
-
-function login($id, $nome, $tipo){
-    /* Criação de variáveis de sessão
-    Recursos que ficam disponíveis para uso durante
-    toda a duração da sessão, ou seja, enquanto o
-    navegador não for fechado ou o usuário não clicar
-    em Sair. */
-    $_SESSION["id"] = $id;
-    $_SESSION["nome"] = $nome;
-    $_SESSION["tipo"] = $tipo;
+function login($id,$nome,$tipo){
+//Criar variáveis de sessão são recursos que ficam disponível para uso durante  toda  duração  da sessão,ou seja ,enquanto o navegador não for fechado  ou  o usuário não clicar em sair.
+$_SESSION["id"]=$id;
+$_SESSION["nome"]=$nome;
+$_SESSION["tipo"]=$tipo;
 }
 
 function logout(){
     session_destroy();
     header("location:../login.php?saiu");
-    exit; // ou die()
+    exit;
 }
-
-/* Esta verificação será aplicada em TODAS AS PÁGINAS
-relacionadas ao gerenciamento de usuários da área
-administrativa. */
-function verificaTipo(){
-    /* Se o tipo de usuário logado
-    na sessão NÃO FOR admin */
-    if( $_SESSION['tipo'] != 'admin' ){
-        // Então redirecione para:
+function verificarTipo(){
+    // Se tipo de usuário logado na sessão não for admin
+    if($_SESSION['tipo'!='admin']){
         header("location:nao-autorizado.php");
         exit;
+
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+?>

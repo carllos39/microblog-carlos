@@ -23,10 +23,11 @@ $noticia=lerUmaNoticia($conexao,$idNoticias,$idUsuario,$tipoUsuario);
         $imagem=$_FILES['imagem']['name'];
         upload($_FILES['imagem']);
 
-        atualizarNoticia($conexao,$titulo,$texto,$resumo,$imagem,$idNoticias,$idUsuario,$tipoUsuario);
-        header("location:noticias.php");
-
+        
     }
+    
+    atualizarNoticia($conexao,$titulo,$texto,$resumo,$imagem,$idNoticias,$idUsuario,$tipoUsuario);
+    header("location:noticias.php");
  }
 
 ?>
