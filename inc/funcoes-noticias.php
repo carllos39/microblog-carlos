@@ -69,7 +69,7 @@ function lerNoticias($conexao, $idUsuario, $tipoUsuario)
                      usuario.nome AS autor
                       FROM noticias JOIN usuario 
                       ON noticias.usuario_id=usuario.id 
-                      ORDER BY data DESC";
+                      ";
     } else {
         //SQL editor:pode carregar /ver  tudo dele somente
         $sql = "SELECT id,titulo ,data FROM noticias WHERE usuario_id = $idUsuario ORDER BY data DESC";
