@@ -1,25 +1,24 @@
 <?php
 require_once "../inc/funcoes-noticias.php";
 require_once "../inc/cabecalho-admin.php";
-//Capturar o id da noticias que foi trnsmitido via URL
+//Capturar o id da noticias que foi transmitido via URL
 $idNoticias=$_GET['id'];
 $idUsuario=$_SESSION['id'];
 $tipoUsuario=$_SESSION['tipo'];
 
 $noticia=lerUmaNoticia($conexao,$idNoticias,$idUsuario,$tipoUsuario);
  if(isset($_POST['atualizar'])){
-     $titulo=$_POST['titulo'];
-     $texto=$_POST['texto'];
-     $resumo=$_POST['resumo'];
-     //Logica /Algoritmo para imagem
-     // Se o campo  imagem estiver vazio ,então significa  que o ususário não  quer mudar a imagem.
-     //Ou seja , o sistema vai manter a imagem existente.
-     
-     if(empty($_FILES['imagem']['name'])){
-         $imagem=$_POST['imagem-existente'];
-         
-        }else{
-        
+    $titulo=$_POST['titulo'];
+    $texto=$_POST['texto'];
+    $resumo=$_POST['resumo'];
+    //Logica /Algoritmo para imagem
+    // Se o campo  imagem estiver vazio ,então significa  que o usuário não  quer mudar a imagem.
+    //Ou seja , o sistema vai manter a imagem existente.
+
+    if(empty($_FILES['imagem']['name'])){
+        $imagem=$_POST['imagem-existente'];
+
+    }else{
         //Caso ao contrario ,então pegamos a referenczia do novo arquivo (nome e extensão) e fazemos o processo de upload.
         $imagem=$_FILES['imagem']['name'];
         upload($_FILES['imagem']);
