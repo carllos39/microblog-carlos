@@ -83,8 +83,11 @@ function lerNoticias($conexao, $idUsuario, $tipoUsuario)
 
 
 /* Usada em noticias.php e páginas da área pública */
-function formataData()
-{
+function formataData($data){
+    $dataFormatada= date("d/m/Y H:i",strtotime($data));
+    return $dataFormatada;
+
+
 } // fim formataData
 
 

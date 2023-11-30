@@ -46,7 +46,7 @@ $listaDeNoticias=lerNoticias($conexao,$idUsuario,$tipoUsuario);
 
 					<tr>
                         <td><?=$noticia['titulo']?></td>
-                        <td><?=$noticia['data']?></td>
+                        <td><?=formataData($noticia['data'])?></td>
                        <?php if($tipoUsuario=="admin"){ ?>
                         <td><?=$noticia['autor']?></td>
 						<?php } ?>
