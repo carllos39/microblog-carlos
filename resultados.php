@@ -1,11 +1,18 @@
 <?php
+require "inc/funcoes-noticias.php"; 
 require "inc/cabecalho.php"; 
+
+//Capturando o que foi buscado/digitado no campo
+$termoDigitado=$_GET['busca'];
+
+//Executando a busca no banco de adados
+$resultadoDaBusca=busca($conexao,$termoDigitado);
 ?>
 
 
 <div class="row bg-white rounded shadow my-1 py-4">
     <h2 class="col-12 fw-light">
-        Você procurou por <span class="badge bg-dark">termo buscado</span> e
+        Você procurou por <span class="badge bg-dark"><?=$termoDigitado?></span> e
         obteve <span class="badge bg-info">X</span> resultados
     </h2>
     
