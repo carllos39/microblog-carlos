@@ -1,7 +1,8 @@
 <?php
 require "inc/funcoes-noticias.php"; 
 require "inc/cabecalho.php"; 
-$idNoticias=$_GET['id'];
+$idNoticias=mysqli_real_escape_String($conexao,$_GET['id']);
+
 $dadosDaNoticias=lerDetalhes($conexao,$idNoticias);
 
 ?>

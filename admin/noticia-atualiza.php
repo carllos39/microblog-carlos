@@ -2,9 +2,9 @@
 require_once "../inc/funcoes-noticias.php";
 require_once "../inc/cabecalho-admin.php";
 //Capturar o id da noticias que foi transmitido via URL
-$idNoticias=$_GET['id'];
-$idUsuario=$_SESSION['id'];
-$tipoUsuario=$_SESSION['tipo'];
+$idNoticias= mysqli_real_escape_String($conexao,$_GET['id']);
+$idUsuario= $_SESSION['id'];
+$tipoUsuario= $_SESSION['tipo'];
 
 $noticia=lerUmaNoticia($conexao,$idNoticias,$idUsuario,$tipoUsuario);
  if(isset($_POST['atualizar'])){
